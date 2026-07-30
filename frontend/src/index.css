@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    width: 100%;
+    height: 100%;
+    font-family: Inter, system-ui, sans-serif;
+    background: #f8f9fa;
+}
+
+.app-layout {
+    height: 100vh;
+
+    display: grid;
+
+    /* thinner toolbar */
+    grid-template-rows:
+        52px
+        1fr
+        120px;
+}
+
+/* ==========================
+   Toolbar
+========================== */
+
+.toolbar {
+    display: flex;
+    align-items: center;
+
+    padding: 0 16px;
+
+    border-bottom: 1px solid #d9d9d9;
+
+    background: white;
+
+    font-weight: 600;
+}
+
+/* ==========================
+   Workspace
+========================== */
+
+.workspace {
+    display: grid;
+
+    /* Explorer | Spreadsheet | Map */
+    grid-template-columns:
+        220px
+        minmax(500px, 1.4fr)
+        minmax(500px, 1.2fr);
+
+    overflow: hidden;
+}
+
+/* ==========================
+   Panels
+========================== */
+
+.explorer,
+.grid,
+.map,
+.properties {
+    background: white;
+}
+
+.explorer,
+.grid,
+.map {
+    padding: 16px;
+}
+
+.explorer {
+    border-right: 1px solid #d9d9d9;
+}
+
+.editor {
+    border-right: 1px solid #d9d9d9;
+}
+
+.properties {
+    border-top: 1px solid #d9d9d9;
+
+    padding: 16px;
+}
+
+/* ==========================
+   Headings
+========================== */
+
+.toolbar,
+.explorer,
+.editor,
+.map,
+.properties {
+    font-size: 15px;
+    color: #222;
+}
