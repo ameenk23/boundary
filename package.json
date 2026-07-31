@@ -2,6 +2,8 @@
   "dependencies": {
     "ag-grid-community": "^36.0.2",
     "ag-grid-react": "^36.0.2",
-    "maplibre-gl": "^6.1.0"
+    "leaflet": "^1.9.4",
+    "maplibre-gl": "^6.1.0",
+    "react-leaflet": "^5.0.0"
   }
 }
