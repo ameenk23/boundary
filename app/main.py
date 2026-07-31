@@ -30,6 +30,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 app.include_router(projects_router)
 app.include_router(vehicle_platforms_router)
 app.include_router(odds_router)

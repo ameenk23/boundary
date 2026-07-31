@@ -49,40 +49,48 @@ body,
 .workspace {
     display: grid;
 
-    /* Explorer | Spreadsheet | Map */
     grid-template-columns:
         220px
         minmax(500px, 1.4fr)
         minmax(500px, 1.2fr);
 
     overflow: hidden;
+
+    height: 100%;
 }
+
 
 /* ==========================
    Panels
 ========================== */
 
 .explorer,
-.grid,
+.grid-container,
 .map,
 .properties {
     background: white;
 }
 
 .explorer,
-.grid,
 .map {
     padding: 16px;
 }
 
-.explorer {
-    border-right: 1px solid #d9d9d9;
-}
-
 .editor {
+    display: flex;
+    overflow: hidden;
     border-right: 1px solid #d9d9d9;
 }
 
+.grid-container {
+    flex: 1;
+    display: flex;      /* <-- ADD */
+    overflow: hidden;
+}
+
+.grid-container > * {
+    flex: 1;            /* <-- ADD */
+}
 .properties {
     border-top: 1px solid #d9d9d9;
 

@@ -4,9 +4,11 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 from typing import TypeVar
+from typing import Optional
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
+
 
 from app.models import (
     Actor,
@@ -158,9 +160,18 @@ def get_vehicle_platform(db: Session, vehicle_platform_id: int) -> VehiclePlatfo
     return _get(db, VehiclePlatform, vehicle_platform_id)
 
 
-def get_vehicle_platforms(db: Session, offset: int = 0, limit: int = 100) -> list[VehiclePlatform]:
-    return _get_all(db, VehiclePlatform, offset, limit)
+def get_vehicle_platforms(
+    db: Session,
+    project_id: Optional[int] = None,
+):
+    query = db.query(VehiclePlatform)
 
+    if project_id is not None:
+        query = query.filter(
+            VehiclePlatform.project_id == project_id
+        )
+
+    return query.all()
 
 def update_vehicle_platform(db: Session, vehicle_platform_id: int, vehicle_platform_in: VehiclePlatformUpdate, updated_by: str | None = None) -> VehiclePlatform | None:
     vehicle_platform = get_vehicle_platform(db, vehicle_platform_id)
@@ -180,9 +191,25 @@ def get_odd(db: Session, odd_id: int) -> ODD | None:
     return _get(db, ODD, odd_id)
 
 
-def get_odds(db: Session, offset: int = 0, limit: int = 100) -> list[ODD]:
-    return _get_all(db, ODD, offset, limit)
+def get_odds(
+    db: Session,
+    platform_id: Optional[int] = None,
+    offset: int = 0,
+    limit: int = 100,
+) -> list[ODD]:
 
+    query = db.query(ODD).filter(ODD.is_deleted.is_(False))
+
+    if platform_id is not None:
+        query = query.filter(ODD.vehicle_platform_id == platform_id)
+
+    return (
+        query
+        .order_by(ODD.id)
+        .offset(offset)
+        .limit(limit)
+        .all()
+    )
 
 def update_odd(db: Session, odd_id: int, odd_in: ODDUpdate, updated_by: str | None = None) -> ODD | None:
     odd = get_odd(db, odd_id)
@@ -246,8 +273,30 @@ def get_zone(db: Session, zone_id: int) -> Zone | None:
     return _get(db, Zone, zone_id)
 
 
-def get_zones(db: Session, offset: int = 0, limit: int = 100) -> list[Zone]:
-    return _get_all(db, Zone, offset, limit)
+def get_zones(
+    db: Session,
+    odd_id: Optional[int] = None,
+    offset: int = 0,
+    limit: int = 100,
+):
+    query = (
+        db.query(Zone)
+        .join(DrivableArea)
+        .filter(Zone.is_deleted.is_(False))
+    )
+
+    if odd_id is not None:
+        query = query.filter(
+            DrivableArea.odd_id == odd_id
+        )
+
+    return (
+        query
+        .order_by(Zone.id)
+        .offset(offset)
+        .limit(limit)
+        .all()
+    )
 
 
 def update_zone(db: Session, zone_id: int, zone_in: ZoneUpdate, updated_by: str | None = None) -> Zone | None:
@@ -268,8 +317,29 @@ def get_road_segment(db: Session, road_segment_id: int) -> RoadSegment | None:
     return _get(db, RoadSegment, road_segment_id)
 
 
-def get_road_segments(db: Session, offset: int = 0, limit: int = 100) -> list[RoadSegment]:
-    return _get_all(db, RoadSegment, offset, limit)
+def get_road_segments(
+    db: Session,
+    odd_id: Optional[int] = None,
+    offset: int = 0,
+    limit: int = 100,
+) -> list[RoadSegment]:
+
+    query = db.query(RoadSegment).filter(
+        RoadSegment.is_deleted.is_(False)
+    )
+
+    if odd_id is not None:
+        query = query.filter(
+            RoadSegment.odd_id == odd_id
+        )
+
+    return (
+        query
+        .order_by(RoadSegment.id)
+        .offset(offset)
+        .limit(limit)
+        .all()
+    )
 
 
 def update_road_segment(db: Session, road_segment_id: int, road_segment_in: RoadSegmentUpdate, updated_by: str | None = None) -> RoadSegment | None:

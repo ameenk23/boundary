@@ -1,21 +1,22 @@
 import Toolbar from "../components/toolbar/Toolbar";
+import Explorer from "../components/explorer/explorer";
+import Grid from "../components/grid/grid";
+import MapPanel from "../components/map/mappanel";
+
 export default function MainLayout() {
     return (
         <div className="app-layout">
-
             <Toolbar />
 
             <main className="workspace">
-                <aside className="explorer">
-                    Explorer
-                </aside>
+                <Explorer />
 
                 <section className="editor">
-                    Spreadsheet
+                    <Grid />
                 </section>
 
                 <aside className="map">
-                    Map
+                    <MapPanel />
                 </aside>
             </main>
 
