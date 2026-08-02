@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { ODD } from "../types/odd";
-import { getODDs } from "../services/oddapi";
+import { getODDs } from "../services/odd/oddapi.ts";
 
 export function useODDs(platformId: number | null) {
 

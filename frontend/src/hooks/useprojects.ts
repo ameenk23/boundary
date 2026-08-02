@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getProjects } from "../services/projectapi";
+import { getProjects } from "../services/project/projectapi.ts";
 import type { Project } from "../types/project";
 
 export function useProjects() {

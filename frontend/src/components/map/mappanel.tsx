@@ -9,7 +9,7 @@ import MapView from "./mapview";
 import { renderRoadSegments } from "./renderers/roadsegmentrenderer";
 import { renderSelectedRoadSegment } from "./renderers/selectedroadsegmentrenderer";
 
-import { focusRoadSegment } from "../../map/viewport/focusroadsegment";
+import { focusRoadSegment } from "./viewport/focusroadsegment";
 
 export default function MapPanel() {
 
@@ -18,23 +18,28 @@ export default function MapPanel() {
     const {
         selectedODDId,
         selectedRoadSegmentId,
+        setSelectedRoadSegmentId,
     } = useAppContext();
 
     const {
         roadSegments,
     } = useRoadSegments(selectedODDId);
 
-    // Draw all road segments
+    // Render all road segments
     useEffect(() => {
 
         if (!mapRef.current) return;
 
         renderRoadSegments(
             mapRef.current,
-            roadSegments
+            roadSegments,
+            setSelectedRoadSegmentId,
         );
 
-    }, [roadSegments]);
+    }, [
+        roadSegments,
+        setSelectedRoadSegmentId,
+    ]);
 
     // Handle selection
     useEffect(() => {

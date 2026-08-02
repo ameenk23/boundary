@@ -14,15 +14,17 @@ body,
 }
 
 .app-layout {
-    height: 100vh;
 
-    display: grid;
+    height:100vh;
 
-    /* thinner toolbar */
+    display:grid;
+
     grid-template-rows:
+
         52px
-        1fr
-        120px;
+
+        1fr;
+
 }
 
 /* ==========================
@@ -47,16 +49,13 @@ body,
 ========================== */
 
 .workspace {
-    display: grid;
 
-    grid-template-columns:
-        220px
-        minmax(500px, 1.4fr)
-        minmax(500px, 1.2fr);
+    display: grid;
 
     overflow: hidden;
 
     height: 100%;
+
 }
 
 
@@ -91,10 +90,34 @@ body,
 .grid-container > * {
     flex: 1;            /* <-- ADD */
 }
-.properties {
-    border-top: 1px solid #d9d9d9;
-
+.properties-panel {
+    height: 100%;
+    overflow: auto;
     padding: 16px;
+}
+
+.property-grid {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.property-grid tr {
+    border-bottom: 1px solid #ececec;
+}
+
+.property-grid td {
+    padding: 10px 8px;
+}
+
+.property-label {
+    width: 180px;
+    font-weight: 600;
+    color: #555;
+}
+
+.property-value {
+    color: #222;
 }
 
 /* ==========================
@@ -108,4 +131,93 @@ body,
 .properties {
     font-size: 15px;
     color: #222;
+}
+
+/* ==========================
+   AG Grid
+========================== */
+
+.ag-theme-quartz {
+
+    --ag-selected-row-background-color: #fff3e0;
+
+    --ag-range-selection-background-color: transparent;
+
+    --ag-row-hover-color: #f7f7f7;
+
+}
+
+.ag-theme-quartz .ag-row-selected {
+
+    border-left: 4px solid #ff9800;
+
+    font-weight: 500;
+
+}
+/* ======================================
+   Explorer Tree
+====================================== */
+
+.explorer {
+
+    padding: 12px;
+
+    overflow-y: auto;
+
+    user-select: none;
+
+    font-size: 14px;
+
+}
+
+.tree-folder {
+
+    padding: 6px 8px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    border-radius: 4px;
+
+}
+
+.tree-folder:hover {
+
+    background: #ececec;
+
+}
+
+.tree-children {
+
+    margin-left: 18px;
+
+    margin-bottom: 8px;
+
+}
+
+.tree-item {
+
+    padding: 5px 8px;
+
+    cursor: pointer;
+
+    border-radius: 4px;
+
+    white-space: nowrap;
+
+}
+
+.tree-item:hover {
+
+    background: #e6f2ff;
+
+}
+
+.tree-item.active {
+
+    background: #1976d2;
+
+    color: white;
+
 }

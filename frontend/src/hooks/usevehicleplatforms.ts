@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { VehiclePlatform } from "../types/vehicleplatform";
-import { getVehiclePlatforms } from "../services/vehicleplatformapi";
+import { getVehiclePlatforms } from "../services/platform/vehicleplatformapi.ts";
 
 export function useVehiclePlatforms(projectId: number | null) {
     const [platforms, setPlatforms] = useState<VehiclePlatform[]>([]);

@@ -1,5 +1,5 @@
-import api from "./api";
-import type { VehiclePlatform } from "../types/vehicleplatform";
+import api from "../api.ts";
+import type { VehiclePlatform } from "../../types/vehicleplatform.ts";
 
 export async function getVehiclePlatforms(projectId: number) {
     const response = await api.get<VehiclePlatform[]>(

@@ -1,0 +1,17 @@
+.splitter {
+
+    width: 6px;
+
+    cursor: col-resize;
+
+    background: #ececec;
+
+    transition: background .15s;
+
+}
+
+.splitter:hover {
+
+    background: #cfcfcf;
+
+}

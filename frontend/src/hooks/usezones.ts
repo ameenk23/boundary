@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getZones } from "../services/zoneapi";
+import { getZones } from "../services/zone/zoneapi.ts";
 import type { Zone } from "../types/zone";
 
 export function useZones(oddId: number | null) {
