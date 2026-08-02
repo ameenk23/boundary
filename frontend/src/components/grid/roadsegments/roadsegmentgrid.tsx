@@ -22,6 +22,7 @@ export default function RoadSegmentGrid() {
         selectedExplorerNode,
         selectedRoadSegmentId,
         setSelectedRoadSegmentId,
+        setEditorOpen,
     } = useAppContext();
 
     const {
@@ -29,7 +30,7 @@ export default function RoadSegmentGrid() {
         loading,
     } = useRoadSegments(selectedODDId);
 
-    const columnDefs = useMemo<ColDef[]>((() => [
+    const columnDefs = useMemo<ColDef[]>(() => [
 
         {
             field: "id",
@@ -51,7 +52,7 @@ export default function RoadSegmentGrid() {
             maxWidth: 100,
         },
 
-    ]), []);
+    ], []);
 
     const defaultColDef = useMemo<ColDef>(() => ({
 
@@ -85,7 +86,15 @@ export default function RoadSegmentGrid() {
         event: RowClickedEvent
     ) => {
 
-        setSelectedRoadSegmentId(event.data.id);
+        setSelectedRoadSegmentId(
+            event.data.id
+        );
+
+    };
+
+    const onCellDoubleClicked = () => {
+
+        setEditorOpen(true);
 
     };
 
@@ -105,21 +114,35 @@ export default function RoadSegmentGrid() {
         if (!node) return;
 
         node.setSelected(true);
+
         api.ensureNodeVisible(node);
 
     }, [selectedRoadSegmentId]);
 
     if (selectedExplorerNode !== "road_segments") {
-        return <div>Select "Road Segments" in the Explorer</div>;
+
+        return (
+            <div>
+                Select "Road Segments" in the Explorer
+            </div>
+        );
+
     }
 
     if (loading) {
-        return <div>Loading...</div>;
+
+        return (
+            <div>
+                Loading...
+            </div>
+        );
+
     }
 
     return (
 
         <AgGridReact
+
             rowData={roadSegments}
 
             getRowId={(params) =>
@@ -139,6 +162,9 @@ export default function RoadSegmentGrid() {
             onFirstDataRendered={onFirstDataRendered}
 
             onRowClicked={onRowClicked}
+
+            onCellDoubleClicked={onCellDoubleClicked}
+
         />
 
     );
