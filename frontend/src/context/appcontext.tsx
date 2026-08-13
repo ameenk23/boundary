@@ -12,34 +12,111 @@ export type ExplorerNode =
     | "functional_scenarios"
     | "actors";
 
+export type ToolMode =
+    | "select"
+    | "draw_road_segment"
+    | "draw_zone"
+    | "draw_drivable_area";
+
+export type DialogType =
+    | null
+    | "road_segment";
+
 interface AppContextType {
 
+    // =========================
     // Workspace
+    // =========================
+
     selectedProjectId: number | null;
-    setSelectedProjectId: (id: number | null) => void;
+
+    setSelectedProjectId: (
+        id: number | null
+    ) => void;
 
     selectedPlatformId: number | null;
-    setSelectedPlatformId: (id: number | null) => void;
+
+    setSelectedPlatformId: (
+        id: number | null
+    ) => void;
 
     selectedODDId: number | null;
-    setSelectedODDId: (id: number | null) => void;
 
+    setSelectedODDId: (
+        id: number | null
+    ) => void;
+
+    // =========================
+    // Command Mode
+    // =========================
+
+    toolMode: ToolMode;
+
+    setToolMode: (
+        mode: ToolMode
+    ) => void;
+
+    // =========================
+    // Dialogs
+    // =========================
+
+    dialog: DialogType;
+
+    setDialog: (
+        dialog: DialogType
+    ) => void;
+
+    // =========================
+    // Floating Editor
+    // =========================
+
+    editorOpen: boolean;
+
+    setEditorOpen: (
+        open: boolean
+    ) => void;
+
+    // =========================
     // Explorer
-    selectedExplorerNode: ExplorerNode | null;
+    // =========================
+
+    selectedExplorerNode:
+        ExplorerNode | null;
+
     setSelectedExplorerNode: (
         node: ExplorerNode | null
     ) => void;
 
-    // Selection
-    selectedRoadSegmentId: number | null;
+    // =========================
+    // Pending Entity
+    // =========================
+
+    pendingEntity: unknown | null;
+
+    setPendingEntity: (
+        entity: unknown | null
+    ) => void;
+
+    // =========================
+    // Active Map Selection
+    // =========================
+
+    selectedRoadSegmentId:
+        number | null;
+
     setSelectedRoadSegmentId: (
         id: number | null
     ) => void;
 
-    // Window System
-    editorOpen: boolean;
-    setEditorOpen: (
-        open: boolean
+    // =========================
+    // Export Selection
+    // =========================
+
+    selectedExportEntities:
+        unknown[];
+
+    setSelectedExportEntities: (
+        entities: unknown[]
     ) => void;
 
 }
@@ -54,46 +131,115 @@ export function AppProvider({
     children: ReactNode;
 }) {
 
+    // =========================
     // Workspace
+    // =========================
+
     const [
         selectedProjectId,
         setSelectedProjectId,
-    ] = useState<number | null>(null);
+    ] = useState<number | null>(
+        null
+    );
 
     const [
         selectedPlatformId,
         setSelectedPlatformId,
-    ] = useState<number | null>(null);
+    ] = useState<number | null>(
+        null
+    );
 
     const [
         selectedODDId,
         setSelectedODDId,
-    ] = useState<number | null>(null);
+    ] = useState<number | null>(
+        null
+    );
 
-    // Explorer
+    // =========================
+    // Command Mode
+    // =========================
+
     const [
-        selectedExplorerNode,
-        setSelectedExplorerNode,
-    ] = useState<ExplorerNode | null>(null);
+        toolMode,
+        setToolMode,
+    ] = useState<ToolMode>(
+        "select"
+    );
 
-    // Selection
+    // =========================
+    // Dialogs
+    // =========================
+
     const [
-        selectedRoadSegmentId,
-        setSelectedRoadSegmentId,
-    ] = useState<number | null>(null);
+        dialog,
+        setDialog,
+    ] = useState<DialogType>(
+        null
+    );
 
-    // Window System
+    // =========================
+    // Floating Editor
+    // =========================
+
     const [
         editorOpen,
         setEditorOpen,
     ] = useState(false);
+
+    // =========================
+    // Pending Entity
+    // =========================
+
+    const [
+        pendingEntity,
+        setPendingEntity,
+    ] = useState<unknown | null>(
+        null
+    );
+
+    // =========================
+    // Explorer
+    // =========================
+
+    const [
+        selectedExplorerNode,
+        setSelectedExplorerNode,
+    ] = useState<ExplorerNode | null>(
+        null
+    );
+
+    // =========================
+    // Active Map Selection
+    // =========================
+
+    const [
+        selectedRoadSegmentId,
+        setSelectedRoadSegmentId,
+    ] = useState<number | null>(
+        null
+    );
+
+    // =========================
+    // Export Selection
+    // =========================
+
+    const [
+        selectedExportEntities,
+        setSelectedExportEntities,
+    ] = useState<unknown[]>(
+        []
+    );
 
     return (
 
         <AppContext.Provider
             value={{
 
+                // =========================
                 // Workspace
+                // =========================
+
                 selectedProjectId,
                 setSelectedProjectId,
 
@@ -103,17 +249,54 @@ export function AppProvider({
                 selectedODDId,
                 setSelectedODDId,
 
+                // =========================
+                // Command Mode
+                // =========================
+
+                toolMode,
+                setToolMode,
+
+                // =========================
+                // Dialogs
+                // =========================
+
+                dialog,
+                setDialog,
+
+                // =========================
+                // Floating Editor
+                // =========================
+
+                editorOpen,
+                setEditorOpen,
+
+                // =========================
                 // Explorer
+                // =========================
+
                 selectedExplorerNode,
                 setSelectedExplorerNode,
 
-                // Selection
+                // =========================
+                // Pending Entity
+                // =========================
+
+                pendingEntity,
+                setPendingEntity,
+
+                // =========================
+                // Active Map Selection
+                // =========================
+
                 selectedRoadSegmentId,
                 setSelectedRoadSegmentId,
 
-                // Window System
-                editorOpen,
-                setEditorOpen,
+                // =========================
+                // Export Selection
+                // =========================
+
+                selectedExportEntities,
+                setSelectedExportEntities,
 
             }}
         >
@@ -128,7 +311,8 @@ export function AppProvider({
 
 export function useAppContext() {
 
-    const context = useContext(AppContext);
+    const context =
+        useContext(AppContext);
 
     if (!context) {
 

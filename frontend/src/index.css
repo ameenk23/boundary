@@ -15,14 +15,13 @@ body,
 
 .app-layout {
 
-    height:100vh;
+    height: 100vh;
 
-    display:grid;
+    display: grid;
 
     grid-template-rows:
-
-        52px
-
+        92px
+        48px
         1fr;
 
 }
@@ -30,20 +29,132 @@ body,
 /* ==========================
    Toolbar
 ========================== */
-
 .toolbar {
+
     display: flex;
-    align-items: center;
 
-    padding: 0 16px;
+    align-items: flex-start;
 
-    border-bottom: 1px solid #d9d9d9;
+    justify-content: space-between;
+
+    padding: 18px 28px;
 
     background: white;
 
-    font-weight: 600;
+    border-bottom: 1px solid #e5e7eb;
+
+    min-height: 92px;
+
 }
 
+.toolbar-left {
+
+    display: flex;
+
+    align-items: flex-start;
+
+}
+
+.toolbar-left h1 {
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    color: #111827;
+
+    letter-spacing: -0.5px;
+
+}
+
+.toolbar-center {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 20px;
+
+    flex: 1;
+
+    justify-content: center;
+
+}
+
+.toolbar-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    min-width: 220px;
+
+}
+
+.toolbar-group label {
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #6b7280;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08em;
+
+}
+
+.toolbar-group select {
+
+    height: 40px;
+
+    padding: 0 14px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    background: white;
+
+    font-size: 14px;
+
+    color: #111827;
+
+    transition: border-color .15s ease,
+                box-shadow .15s ease;
+
+}
+
+.toolbar-group select:hover {
+
+    border-color: #9ca3af;
+
+}
+
+.toolbar-group select:focus {
+
+    outline: none;
+
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+
+}
+
+.toolbar-right {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: flex-end;
+
+    min-width: 140px;
+
+}
 /* ==========================
    Workspace
 ========================== */
@@ -148,6 +259,14 @@ body,
 }
 
 .ag-theme-quartz .ag-row-selected {
+
+    border-left: 4px solid #ff9800;
+
+    font-weight: 500;
+
+}
+
+.ag-theme-quartz .map-active-row {
 
     border-left: 4px solid #ff9800;
 

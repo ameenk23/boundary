@@ -3,6 +3,7 @@ import MainLayout from "./layouts/MainLayout";
 import AppWindow from "./components/windows/AppWindow/AppWindow";
 
 import RoadSegmentEditor from "./components/editors/roadsegment/roadsegmenteditor";
+import RoadSegmentCreateDialog from "./components/windows/dialogs/roadsegment/roadsegmentcreatedialog";
 
 import { useAppContext } from "./context/appcontext";
 
@@ -42,6 +43,8 @@ function App() {
                 <RoadSegmentEditor />
 
             </AppWindow>
+
+            <RoadSegmentCreateDialog />
 
         </>
 

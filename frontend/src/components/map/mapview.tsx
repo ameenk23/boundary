@@ -1,9 +1,11 @@
+import { useEffect } from "react";
+
 import {
     MapContainer,
     TileLayer,
+    useMapEvents,
 } from "react-leaflet";
 
-import { useMapEvents } from "react-leaflet";
 import type { Map } from "leaflet";
 
 import "./map.css";
@@ -16,9 +18,20 @@ function MapReady({ onMapReady }: Props) {
 
     const map = useMapEvents({});
 
-    onMapReady(map);
+    useEffect(() => {
+
+        onMapReady(map);
+
+        requestAnimationFrame(() => {
+
+            map.invalidateSize();
+
+        });
+
+    }, [map, onMapReady]);
 
     return null;
+
 }
 
 export default function MapView({
@@ -45,4 +58,5 @@ export default function MapView({
         </MapContainer>
 
     );
+
 }

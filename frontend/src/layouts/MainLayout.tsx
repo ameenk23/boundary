@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
 import Toolbar from "../components/toolbar/Toolbar";
+import CommandBar from "../components/commandbar/commandbar";
+
 import Explorer from "../components/explorer/explorer";
 import Grid from "../components/grid/grid";
 import MapPanel from "../components/map/mappanel";
@@ -86,28 +88,19 @@ export default function MainLayout() {
 
             <Toolbar />
 
+            <CommandBar />
+
             <main
-
                 className="workspace"
-
                 style={{
-
                     gridTemplateColumns: `
-
                         ${explorerWidth}px
-
                         6px
-
                         ${gridWidth}px
-
                         6px
-
                         1fr
-
                     `,
-
                 }}
-
             >
 
                 <Explorer />

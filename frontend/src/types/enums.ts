@@ -1,7 +1,6 @@
 export const ROAD_TYPES = [
-    "urban",
-    "rural",
-    "highway",
+    "urban_street",
+    "motorway",
 ] as const;
 
 export const SURFACE_TYPES = [
@@ -13,5 +12,5 @@ export const SURFACE_TYPES = [
 
 export const DIRECTIONS = [
     "one_way",
-    "bidirectional",
+    "two_way",
 ] as const;

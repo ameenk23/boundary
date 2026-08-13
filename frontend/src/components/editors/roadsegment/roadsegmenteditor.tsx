@@ -15,6 +15,8 @@ import {
     DIRECTIONS,
 } from "../../../types/enums";
 
+import ConfirmDialog from "../../windows/dialogs/confirmdialog";
+
 export default function RoadSegmentEditor() {
 
     const {
@@ -49,10 +51,10 @@ export default function RoadSegmentEditor() {
 
     const [saving, setSaving] = useState(false);
     const [saved, setSaved] = useState(false);
-const [
-    showDiscardDialog,
-    setShowDiscardDialog,
-] = useState(false);
+
+
+const [showDiscardDialog, setShowDiscardDialog] =
+    useState(false);
 
 
 
@@ -302,7 +304,15 @@ const [
                     disabled={saving}
                     onClick={() => {
 
-                        setEditorOpen(false);
+                        if (!dirty) {
+
+                            setEditorOpen(false);
+
+                            return;
+
+                        }
+
+                        setShowDiscardDialog(true);
 
                     }}
                 >
@@ -311,6 +321,35 @@ const [
 
                 </button>
             </div>
+        <ConfirmDialog
+
+    open={showDiscardDialog}
+
+    title="Discard changes?"
+
+    message="You have unsaved changes. Do you want to discard them?"
+
+    confirmText="Discard"
+
+    cancelText="Continue Editing"
+
+    danger
+
+    onConfirm={() => {
+
+        setShowDiscardDialog(false);
+
+        setEditorOpen(false);
+
+    }}
+
+    onCancel={() => {
+
+        setShowDiscardDialog(false);
+
+    }}
+
+/>
 
         </>
 

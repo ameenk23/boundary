@@ -28,7 +28,7 @@ export default function ConfirmDialog({
 
     message,
 
-    confirmText = "Confirm",
+    confirmText = "OK",
 
     cancelText = "Cancel",
 
@@ -40,30 +40,25 @@ export default function ConfirmDialog({
 
 }: ConfirmDialogProps) {
 
-    if (!open) return null;
+    if (!open) {
+
+        return null;
+
+    }
 
     return (
 
-        <div className="dialog-overlay">
+        <div className="dialog-backdrop">
 
             <div className="dialog">
 
-                <div className="dialog-header">
+                <h2>{title}</h2>
 
-                    <h3>{title}</h3>
+                <p>{message}</p>
 
-                </div>
-
-                <div className="dialog-body">
-
-                    <p>{message}</p>
-
-                </div>
-
-                <div className="dialog-footer">
+                <div className="dialog-buttons">
 
                     <button
-                        className="dialog-button"
                         onClick={onCancel}
                     >
                         {cancelText}
@@ -72,8 +67,8 @@ export default function ConfirmDialog({
                     <button
                         className={
                             danger
-                                ? "dialog-button danger"
-                                : "dialog-button primary"
+                                ? "danger"
+                                : ""
                         }
                         onClick={onConfirm}
                     >

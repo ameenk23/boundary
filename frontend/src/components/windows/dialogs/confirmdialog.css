@@ -1,0 +1,63 @@
+.dialog-backdrop {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.45);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 5000;
+
+}
+
+.dialog {
+
+    width: 420px;
+
+    background: white;
+
+    border-radius: 8px;
+
+    padding: 24px;
+
+    box-shadow: 0 8px 32px rgba(0,0,0,.25);
+
+}
+
+.dialog h2 {
+
+    margin-top: 0;
+
+}
+
+.dialog-buttons {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 24px;
+
+}
+
+.dialog button {
+
+    padding: 8px 18px;
+
+}
+
+.dialog button.danger {
+
+    background: #d32f2f;
+
+    color: white;
+
+}
