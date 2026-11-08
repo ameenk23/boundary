@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Credentials
+cookies.txt
+
+# Downloaded videos and temporary files
+*.mp4
+*.mp4.part
+*.ytdl
+
+# Local databases
+*.db

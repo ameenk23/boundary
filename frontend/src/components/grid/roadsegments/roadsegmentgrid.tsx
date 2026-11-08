@@ -8,6 +8,12 @@ import {
     AgGridReact,
 } from "ag-grid-react";
 
+import {
+    AllCommunityModule,
+    ModuleRegistry,
+    ValidationModule,
+} from "ag-grid-community";
+
 import type {
     ColDef,
     FirstDataRenderedEvent,
@@ -16,6 +22,11 @@ import type {
     RowClickedEvent,
     SelectionChangedEvent,
 } from "ag-grid-community";
+
+ModuleRegistry.registerModules([
+    AllCommunityModule,
+    ValidationModule,
+]);
 
 import {
     useAppContext,
@@ -245,58 +256,60 @@ export default function RoadSegmentGrid() {
     }
 
     return (
-
-        <AgGridReact
-
-            rowData={
-                roadSegments
-            }
-
-            getRowId={(params) =>
-                params.data.id.toString()
-            }
-
-            columnDefs={
-                columnDefs
-            }
-
-            defaultColDef={
-                defaultColDef
-            }
-
-            rowSelection={{
-                mode: "multiRow",
-                checkboxes: true,
-                headerCheckbox: false,
-                enableClickSelection: false,
+        <div
+            className="ag-theme-quartz"
+            style={{
+                width: "100%",
+                height: "100%",
             }}
+        >
+            <AgGridReact
+                rowData={roadSegments}
 
-            getRowClass={
-                getRowClass
-            }
+                getRowId={(params) =>
+                    params.data.id.toString()
+                }
 
-            onGridReady={
-                onGridReady
-            }
+                columnDefs={
+                    columnDefs
+                }
 
-            onFirstDataRendered={
-                onFirstDataRendered
-            }
+                defaultColDef={
+                    defaultColDef
+                }
 
-            onRowClicked={
-                onRowClicked
-            }
+                rowSelection={{
+                    mode: "multiRow",
+                    checkboxes: true,
+                    headerCheckbox: false,
+                    enableClickSelection: false,
+                }}
 
-            onSelectionChanged={
-                onSelectionChanged
-            }
+                getRowClass={
+                    getRowClass
+                }
 
-            onCellDoubleClicked={
-                onCellDoubleClicked
-            }
+                onGridReady={
+                    onGridReady
+                }
 
-        />
+                onFirstDataRendered={
+                    onFirstDataRendered
+                }
 
+                onRowClicked={
+                    onRowClicked
+                }
+
+                onSelectionChanged={
+                    onSelectionChanged
+                }
+
+                onCellDoubleClicked={
+                    onCellDoubleClicked
+                }
+            />
+        </div>
     );
 
 }

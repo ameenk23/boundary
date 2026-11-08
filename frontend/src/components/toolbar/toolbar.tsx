@@ -15,7 +15,6 @@ export default function Toolbar() {
     } = useProjects();
 
     const {
-
         selectedProjectId,
         setSelectedProjectId,
 
@@ -28,36 +27,30 @@ export default function Toolbar() {
     } = useAppContext();
 
     const {
-
         platforms,
         loading: platformsLoading,
-
     } = useVehiclePlatforms(
         selectedProjectId
     );
 
     const {
-
         odds,
         loading: oddsLoading,
-
     } = useODDs(
         selectedPlatformId
     );
 
     return (
-
         <header className="toolbar">
 
             <div className="toolbar-left">
 
                 <div className="toolbar-brand">
 
-                    <h1>AVHub</h1>
-
-                    <p>
-                        Operational Design Domain Engineering Platform
-                    </p>
+                    <img
+                        className="boundary-logo"
+                        src="/boundary-logo.png"
+                    />
 
                 </div>
 
@@ -79,17 +72,9 @@ export default function Toolbar() {
                                     ? Number(e.target.value)
                                     : null;
 
-                            setSelectedProjectId(
-                                projectId
-                            );
-
-                            setSelectedPlatformId(
-                                null
-                            );
-
-                            setSelectedODDId(
-                                null
-                            );
+                            setSelectedProjectId(projectId);
+                            setSelectedPlatformId(null);
+                            setSelectedODDId(null);
 
                         }}
                     >
@@ -118,9 +103,7 @@ export default function Toolbar() {
                                     key={project.id}
                                     value={project.id}
                                 >
-
                                     {project.name}
-
                                 </option>
 
                             ))
@@ -148,23 +131,16 @@ export default function Toolbar() {
                                     ? Number(e.target.value)
                                     : null;
 
-                            setSelectedPlatformId(
-                                platformId
-                            );
-
-                            setSelectedODDId(
-                                null
-                            );
+                            setSelectedPlatformId(platformId);
+                            setSelectedODDId(null);
 
                         }}
                     >
 
                         <option value="">
-
                             {platformsLoading
                                 ? "Loading..."
                                 : "Select Platform"}
-
                         </option>
 
                         {platforms.map(platform => (
@@ -173,9 +149,7 @@ export default function Toolbar() {
                                 key={platform.id}
                                 value={platform.id}
                             >
-
                                 {platform.name}
-
                             </option>
 
                         ))}
@@ -197,20 +171,16 @@ export default function Toolbar() {
                         onChange={(e) =>
                             setSelectedODDId(
                                 e.target.value
-                                    ? Number(
-                                        e.target.value
-                                    )
+                                    ? Number(e.target.value)
                                     : null
                             )
                         }
                     >
 
                         <option value="">
-
                             {oddsLoading
                                 ? "Loading..."
                                 : "Select ODD"}
-
                         </option>
 
                         {odds.map(odd => (
@@ -219,9 +189,7 @@ export default function Toolbar() {
                                 key={odd.id}
                                 value={odd.id}
                             >
-
                                 {odd.name}
-
                             </option>
 
                         ))}
@@ -234,12 +202,10 @@ export default function Toolbar() {
 
             <div className="toolbar-right">
 
-                <BackendStatus/>
+                <BackendStatus />
 
             </div>
 
         </header>
-
     );
-
 }
